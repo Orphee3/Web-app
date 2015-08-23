@@ -1,0 +1,9 @@
+<h1>
+    chat list :D
+</h1>
+<div ng-click="chatlist.createRoomChat()">click here to create group</div>
+<md-list>
+    <md-list-item ng-repeat="room in chatlist.rooms | orderBy: '-lastMessageDate'" ng-click="chatlist.openChat(room)">
+        {{room._id}}
+    </md-list-item>
+</md-list>

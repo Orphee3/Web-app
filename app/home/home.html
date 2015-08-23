@@ -1,0 +1,12 @@
+<div>
+    <h1>You are in the home page</h1>
+    <h3 ng-if="home.isAuthenticated()">you are connected</h3>
+    <h3 ng-if="!home.isAuthenticated()">you are not connected</h3>
+    <button ng-click="home.show()"></button>
+    <button ng-click="home.play()">start</button>
+    <button ng-click="home.pause()">pause</button>
+    <button ng-click="home.resume()">resume</button>
+    <div ng-click="home.socket()">
+        socket
+    </div>
+</div>

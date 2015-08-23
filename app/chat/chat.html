@@ -1,0 +1,11 @@
+<md-content style="height: 87%; overflow-x: hidden">
+    <h1>Chat</h1>
+    <div ng-repeat="message in chat.messages">
+        {{message.creator.name}}:{{message.message}}
+    </div>
+
+    <input ng-model="chat.text" type="text" ng-style="chat.inputStyle()" resize>
+    <div ng-click="chat.submit()">click me</div>
+</md-content>
+
+

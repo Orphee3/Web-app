@@ -1,0 +1,12 @@
+<h1>
+    create room
+</h1>
+<div ng-repeat="friend in create.friends | orderBy: 'name'">
+    <img ng-if="friend.picture" ng-src="{{friend.picture}}" style="height: 50px; width: 50px;">
+    <span ng-if="!friend.picture"><i class="material-icons md-48">person</i></span>
+    {{friend.name}}
+    <md-checkbox ng-checked="create.exist(friend)" ng-click="create.set(friend)" aria-label="friend checkbox" style="display: inline">
+    </md-checkbox>
+</div>
+<div ng-click="create.createChat()">create</div>
+<div ng-click="create.test()">included person</div>

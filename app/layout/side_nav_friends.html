@@ -1,0 +1,14 @@
+<div ng-controller="SideNavFriendsCtrl as side">
+    <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-is-locked-open="side.isOpen() && $mdMedia('gt-md')" style="height: 87%">
+        <md-toolbar class="md-theme-light">
+            <h1 class="md-toolbar-tools">Friend list</h1>
+        </md-toolbar>
+        <md-list>
+            <md-list-item ng-click="side.openPrivateChat(friend)" ng-repeat="friend in side.friends | orderBy: 'name'">
+                <img ng-if="friend.picture" ng-src="{{friend.picture}}" style="height: 50px; width: 50px;">
+                <span ng-if="!friend.picture"><i class="material-icons md-48">person</i></span>
+                {{friend.name}}
+            </md-list-item>
+        </md-list>
+    </md-sidenav>
+</div>
