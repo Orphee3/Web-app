@@ -11,6 +11,7 @@
 
         vm.menu = true;
         vm.friends = false;
+        vm.playlist = false;
 
         var service = {
             setSideNavState: setSideNavState,
@@ -22,6 +23,7 @@
 
         function closeAllNav() {
             vm.friends = false;
+            vm.playlist = false;
         }
 
         function setSideNavState(sideNav) {

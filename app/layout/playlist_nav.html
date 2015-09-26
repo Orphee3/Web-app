@@ -1,0 +1,25 @@
+<div ng-controller="PlaylistNavCtrl as p">
+    <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-is-locked-open="p.isOpen()" style="height: 87%">
+        <md-toolbar class="md-theme-light">
+            <span class="md-toolbar-tools">Playlist</span>
+        </md-toolbar>
+            <md-list ng-if="currentPlaylist" dragula='"box-bag"' dragula-model="currentPlaylist">
+                <md-list-item ng-init="trackIndex = $index"
+                              ng-repeat="track in currentPlaylist"
+                              ng-class="{'track-hover': hover, 'playlist-active': p.trackActive === p.getIndex(track)}"
+                              ng-mouseenter="hover=true"
+                              ng-mouseleave="hover=false"
+                        >
+                    {{track.name}}
+                    <md-button ng-click="p.play(track)" class="md-icon-button md-primary" aria-label="play">
+                        <span><i class="material-icons md-18">play_arrow</i></span>
+                    </md-button>
+                    <md-button ng-click="p.deleteTrackFromPlaylist(track)" class="md-icon-button md-warn" aria-label="delete">
+                        <span><i class="material-icons md-18">clear</i></span>
+                    </md-button>
+                </md-list-item>
+            </md-list>
+        <div ng-click="p.test()">click me</div>
+        <div ng-click="p.setPlay()">set</div>
+    </md-sidenav>
+</div>

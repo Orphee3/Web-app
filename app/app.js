@@ -8,7 +8,8 @@
             'ngMaterial',
             'ui.bootstrap',
             'satellizer',
-            'app.core'
+            'app.core',
+            angularDragula(angular)
         ])
         .config(function ($mdThemingProvider, $authProvider) {
             $mdThemingProvider.theme('default')
