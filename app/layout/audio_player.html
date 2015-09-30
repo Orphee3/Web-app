@@ -1,17 +1,17 @@
-<!--<div>I am an audio player :D</div>-->
-
-<div style="background-color: ghostwhite" layout="row">
+<div ng-controller="AudioCtrl as audio" style="background-color: ghostwhite" layout="row">
     <md-button class="md-icon-button md-primary" aria-label="prev">
         <i class="material-icons md-36">skip_previous</i>
     </md-button>
 
-    <md-button class="md-icon-button md-primary" aria-label="play">
-        <i class="material-icons md-36">play_arrow</i>
+    <md-button ng-click="audio.pausePlayStop()" class="md-icon-button md-primary" aria-label="play">
+        <i class="material-icons md-36">{{audio.playImg}}</i>
     </md-button>
 
     <md-button class="md-icon-button md-primary" aria-label="next">
         <i class="material-icons md-36">skip_next</i>
     </md-button>
 
-    <md-progress-linear class="md-accent" md-mode="determinate" value="30" style="margin-top: 15px;"></md-progress-linear>
+
+    <md-slider flex min="0" max="98" ng-mouseup="audio.mouseup()" ng-mousedown="audio.mousedown()" ng-model="audio.time" aria-label="player"></md-slider>
+    <span ng-mouseup="audio.mouseup()" ng-mousedown="audio.mousedown()">{{audio.now}}-{{audio.end}}</span>
 </div>
