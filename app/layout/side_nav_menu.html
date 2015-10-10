@@ -18,11 +18,33 @@
         <md-button ng-if="side.isAuthenticated()" aria-label="moments">
             <span><i class="material-icons">public</i>moments</span>
         </md-button>
-        <md-button aria-label="playlist">
-            <span><i class="material-icons">tune</i>playlist</span>
-        </md-button>
         <md-button ng-if="!side.isAuthenticated()" aria-label="login" ng-href="#/login">
             Login
         </md-button>
+        <md-divider></md-divider>
+        <md-button ng-click="side.togglePlaylistNav()" aria-label="playlist">
+            <!--<span><i class="material-icons">tune</i>playlist</span>-->
+            Playlist
+        </md-button>
+        <div layout="row">
+
+            <md-list>
+                <md-list-item>
+                    <span>Playlist</span>
+                    <md-button ng-click="side.addPlaylist()" class="md-icon-button md-primary" aria-label="playlist add">
+                        <span><i class="material-icons">playlist_add</i></span>
+                    </md-button>
+                    <md-button ng-click="side.togglePlaylistNav()" class="md-icon-button md-primary" aria-label="open playlist">
+                        <span><i class="material-icons">queue_music</i></span>
+                    </md-button>
+                </md-list-item>
+                <md-list-item ng-repeat="l in side.playlist" ng-init="playlistIndex = $index">
+                    <div ng-click="side.selectPlaylist(playlistIndex)" ng-class="{'playlist-active': side.selectedList == playlistIndex}">
+                        playlist{{playlistIndex}}
+                    </div>
+                </md-list-item>
+            </md-list>
+        </div>
+
     </md-sidenav>
 </div>
