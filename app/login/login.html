@@ -1,11 +1,40 @@
-<div>
-    <h1>Login section</h1>
-    <button class="zocial facebook" ng-click="log.authenticate('facebook')">facebook</button>
-    <button class="zocial google" ng-click="log.authenticate('google')">google</button>
+<div style="margin-top: 50px">
+    <md-whiteframe class="md-whiteframe-z3"
+                   layout="column"
+                   layout-align="center center"
+                   style="padding: 25px">
+        <img src="images/logo.png" style="height: 150px; width: 150px;">
+        <h2>Sign in to continue to Orphee</h2>
 
-    <form ng-submit="log.loginLocal()">
-        <input ng-model="log.user.username" type="text" placeholder="username">
-        <input ng-model="log.user.password" type="password" placeholder="password">
-        <input type="submit">
-    </form>
+
+        <form ng-submit="log.loginLocal()">
+            <!--<input ng-model="log.user.username" type="text" placeholder="username">-->
+            <!--<input ng-model="log.user.password" type="password" placeholder="password">-->
+
+            <md-content>
+                <md-input-container>
+                    <label>unsername</label>
+                    <input ng-model="log.user.username">
+                </md-input-container>
+                <md-input-container>
+                    <label>password</label>
+                    <input type="password" ng-model="log.user.password">
+                </md-input-container>
+            </md-content>
+            <md-button class="md-raised md-primary" style="left: 35px;">Next</md-button>
+            <!--<input type="submit">-->
+        </form>
+        <div style="padding-top: 15px; padding-bottom: 15px;">Or</div>
+        <md-content layout="row">
+            <md-button ng-click="log.authenticate('facebook')" class="md-fab md-primary md-hue-2" aria-label="twitter">
+                <md-icon md-svg-src="images/facebook.svg"></md-icon>
+            </md-button>
+            <md-button ng-click="log.authenticate('google')" class="md-fab md-warn" aria-label="facebook">
+                <md-icon md-svg-src="images/google.svg" style="color: white"></md-icon>
+            </md-button>
+        </md-content>
+
+        <!--<button class="zocial facebook" ng-click="log.authenticate('facebook')">facebook</button>-->
+        <!--<button class="zocial google" ng-click="log.authenticate('google')">google</button>-->
+    </md-whiteframe>
 </div>
