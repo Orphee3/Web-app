@@ -6,6 +6,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/zocial/0/zocial.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="app/vendors/dragula/dragula.min.css">
         <link href="stylesheets/style.css" rel="stylesheet">
         <base href="/">
     </head>
@@ -14,11 +15,12 @@
 
         <div ng-include="'app/layout/top_nav.html'"></div>
         <section layout="row">
-            <div ng-include="'app/layout/side_nav_menu.html'"></div>
+            <div style="z-index: 1" ng-include="'app/layout/side_nav_menu.html'"></div>
             <div ng-view style="margin-left: auto; margin-right: auto"></div>
-            <div ng-include="'app/layout/side_nav_friends.html'"></div>
+            <div style="z-index: 1"ng-include="'app/layout/side_nav_friends.html'"></div>
+            <div style="z-index: 1"ng-include="'app/layout/playlist_nav.html'"></div>
         </section>
-        <div ng-include="'app/layout/audio_player.html'" style="position: absolute; width: 100%; bottom: 0"></div>
+        <div ng-include="'app/layout/audio_player.html'" style="position: fixed; width: 100%; bottom: 0"></div>
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
@@ -57,8 +59,11 @@
         <script src="app/vendors/util/dom_request_xhr.js"></script>
         <script src="app/vendors/util/dom_request_script.js"></script>
 
+        <script src="app/vendors/inc/event.js"></script>
+
+        <script src="app/vendors/dragula/angular-dragula.min.js"></script>
+
         <script src="app/app.js"></script>
-        <!--<script src="app/blocks/router/router.module.js"></script>-->
         <script src="app/config.route.js"></script>
 
         <!-- core module -->
@@ -69,30 +74,20 @@
         <script src="app/core/chatservice.js"></script>
         <script src="app/core/directives.js"></script>
         <script src="app/core/socketservice.js"></script>
+        <script src="app/core/audioservice.js"></script>
+        <script src="app/core/playlistservice.js"></script>
 
+        <!-- controller -->
         <script src="app/home/home.js"></script>
         <script src="app/layout/top_nav.js"></script>
         <script src="app/layout/side_nav_menu.js"></script>
         <script src="app/layout/side_nav_friends.js"></script>
+        <script src="app/layout/playlist_nav.js"></script>
+        <script src="app/layout/audio_player.js"></script>
         <script src="app/login/login.js"></script>
         <script src="app/chat/chatlist.js"></script>
         <script src="app/chat/createroom.js"></script>
         <script src="app/chat/chat.js"></script>
-        <script>
-            window.onload = function () {
-                MIDI.loadPlugin({
-                    soundfontUrl: "./soundfont/",
-                    onprogress: function(state, progress) {
-                        console.log(state, progress);
-                    },
-                    onsuccess: function() {
-                        //player = MIDI.Player;
-                        //player.timeWarp = 1;
 
-                        //player.loadFile('loop1.mid', player.start);
-                    }
-                });
-            };
-        </script>
     </body>
 </html>

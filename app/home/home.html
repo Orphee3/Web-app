@@ -1,12 +1,28 @@
-<div>
-    <h1>You are in the home page</h1>
-    <h3 ng-if="home.isAuthenticated()">you are connected</h3>
-    <h3 ng-if="!home.isAuthenticated()">you are not connected</h3>
-    <button ng-click="home.show()"></button>
-    <button ng-click="home.play()">start</button>
-    <button ng-click="home.pause()">pause</button>
-    <button ng-click="home.resume()">resume</button>
-    <div ng-click="home.socket()">
-        socket
-    </div>
+<div style="width: 100%">
+    <md-grid-list
+        id="grid-list-home"
+        md-cols-sm="1" md-cols-md="4" md-cols-lg="10" md-cols-gt-lg="12"
+        md-row-height-gt-md="1:1" md-row-height="4:3"
+        md-gutter="5px" md-gutter-gt-sm="12px"
+        style="height: 1600px; margin-top: 50px;">
+        <md-grid-tile
+            ng-repeat="tile in home.creations"
+            md-rowspan="2"
+            md-colspan="2"
+            md-colspan-lg="3"
+            md-colspan-md="4">
+            <md-whiteframe class="md-whiteframe-z4" layout="column">
+            <div style="padding-top: 10px; text-align: center">{{tile.name}}</div>
+                <img style="cursor: pointer; width: 200px; padding-bottom:15px; margin-left: 5px; margin-right:5px;" ng-src="{{tile.picture}}">
+                <div style="color: #fff; background: rgba(0, 0, 0, 0.18);">
+                    <md-button ng-click="home.playCurrent(tile.url)" class="md-icon-button md-primary" aria-label="play">
+                        <i class="material-icons md-18">play_arrow</i>
+                    </md-button>
+                    <md-button ng-click="home.addToPlaylist(tile)" class="md-icon-button md-primary" aria-label="add to playlist">
+                        <i class="material-icons md-18">queue_music</i>
+                    </md-button>
+                </div>
+            </md-whiteframe>
+        </md-grid-tile>
+  </md-grid-list>
 </div>

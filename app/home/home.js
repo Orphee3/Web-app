@@ -6,36 +6,48 @@
         .module('orphee-app')
         .controller('HomeCtrl', HomeCtrl);
 
-    HomeCtrl.$inject = ['$auth', '$window', 'socketservice'];
+    HomeCtrl.$inject = ['$q', '$auth', '$window', 'audioservice', 'dataservice', 'playlistservice', '$rootScope'];
 
-    function HomeCtrl($auth, $window, socketservice) {
+    function HomeCtrl($q, $auth, $window, audioservice, dataservice, playlistservice, $rootScope) {
         var vm = this;
 
+        vm.creations = [];
         vm.isAuthenticated = isAuthenticated;
-        vm.show = function () {
-            console.log($window.sessionStorage.token);
-        };
+        vm.playCurrent = playCurrent;
+        vm.addToPlaylist= addToPlaylist;
+
+        activate();
+
+        function activate() {
+            var promises = [getPopularCreation()];
+
+            $q.all(promises)
+                .then(function () {
+                    console.log('activated home page');
+                    console.log(vm.creations);
+                });
+        }
+
+        function getPopularCreation() {
+            return dataservice.getPopularCreation()
+                .then(function (data) {
+                    vm.creations = data;
+                    return vm.creations;
+                });
+        }
 
         function isAuthenticated() {
             //return $window.sessionStorage.token;
             return $auth.isAuthenticated();
         }
 
-        //test lecteur
-        vm.play = function () {
-            MIDI.Player.loadFile('loop1.loop', MIDI.Player.start);
-        };
+        function playCurrent(url) {
+            audioservice.play(url);
+        }
 
-        vm.pause = function () {
-            MIDI.Player.pause(true);
-        };
-
-        vm.resume = function () {
-            MIDI.Player.resume();
-        };
-
-        vm.socket = function() {
-            console.log('socket', socketservice.sock);
+        function addToPlaylist(creation) {
+            playlistservice.addToPlaylist(creation);
+            $rootScope.$broadcast('refresh playlist');
         }
     }
 

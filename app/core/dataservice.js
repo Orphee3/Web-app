@@ -11,7 +11,8 @@
     function dataservice($http, $q) {
         var service = {
             getById: getById,
-            getFriends: getFriends
+            getFriends: getFriends,
+            getPopularCreation: getPopularCreation
         };
 
         return service;
@@ -34,6 +35,16 @@
             function getFriendsCompleted(data, status, headers, config) {
                 //console.log(data.data);
                 //return $q.when(data.data);
+                return data.data;
+            }
+        }
+
+        function getPopularCreation() {
+            return $http.get('/api/creationPopular?size=10')
+                .then(getCreationCompleted)
+                .catch(console.log);
+
+            function getCreationCompleted(data, status, headers, config) {
                 return data.data;
             }
         }
