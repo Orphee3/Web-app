@@ -97,8 +97,7 @@
         function inputStyle() {
             return {
                 position: 'relative',
-                width: ($scope.windowWidth - 250 - 350) + 'px',
-                'margin-right': '500px'
+                width: ($scope.windowWidth - 250 - 350) + 'px'
             };
         }
     }
