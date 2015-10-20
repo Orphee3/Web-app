@@ -8,6 +8,7 @@
             'ngMaterial',
             'ui.bootstrap',
             'satellizer',
+            'pascalprecht.translate',
             'app.core',
             angularDragula(angular)
         ])

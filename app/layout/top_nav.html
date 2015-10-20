@@ -14,7 +14,7 @@
             <i class="material-icons">search</i>
         </md-button>
 
-        <a ng-if="!top.isAuthenticated()" href="#/login">Login</a>
+        <a ng-if="!top.isAuthenticated()" href="#/login">{{'LOG_IN' | translate}}</a>
         <a ng-if="top.isAuthenticated()" style="position: absolute; right: 0;">
             <img ng-src="{{top.getUserImage()}}" style="height: 50px; width: auto;">Hi, {{top.getUserName()}}
         </a>
