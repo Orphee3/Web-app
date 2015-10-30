@@ -6,9 +6,9 @@
         .module('orphee-app')
         .controller('TopNavCtrl', TopNavCtrl);
 
-    TopNavCtrl.$inject = ['$auth', '$window', '$mdSidenav', 'navservice', 'socketservice'];
+    TopNavCtrl.$inject = ['$auth', '$window', '$mdSidenav', 'navservice', 'socketservice', '$translate'];
 
-    function TopNavCtrl($auth, $window, $mdSidenav, navservice, socketservice) {
+    function TopNavCtrl($auth, $window, $mdSidenav, navservice, socketservice, $translate) {
         var vm = this;
 
         vm.isAuthenticated = isAuthenticated;
@@ -18,6 +18,8 @@
         //pull user info for nav top
         vm.getUserImage = getUserImage;
         vm.getUserName = getUserName;
+
+        vm.changeLanguage = changeLanguage;
 
         function isAuthenticated() {
             return $auth.isAuthenticated();
@@ -41,6 +43,10 @@
 
         function getUserName() {
             return JSON.parse($window.localStorage.currentUser).name;
+        }
+
+        function changeLanguage(key) {
+            $translate.use(key);
         }
     }
 

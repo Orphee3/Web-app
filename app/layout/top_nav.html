@@ -15,9 +15,25 @@
         </md-button>
 
         <a ng-if="!top.isAuthenticated()" href="#/login">{{'LOG_IN' | translate}}</a>
-        <a ng-if="top.isAuthenticated()" style="position: absolute; right: 0;">
-            <img ng-src="{{top.getUserImage()}}" style="height: 50px; width: auto;">Hi, {{top.getUserName()}}
+        <md-fab-speed-dial md-direction="down" ng-class="md-fling" style="position: absolute; right: 0">
+            <md-fab-trigger>
+                <md-button aria-label="language" class="md-fab">
+                    <i class="material-icons">language</i>
+                </md-button>
+            </md-fab-trigger>
+            <md-fab-actions>
+                <md-button ng-click="top.changeLanguage('fr')" class="md-fab md-raised md-mini" aria-label="french">
+                    <span class="flag-icon flag-icon-fr flag-icon-squared"></span>
+                </md-button>
+                <md-button ng-click="top.changeLanguage('en')" class="md-fab md-raised md-mini" aria-label="english">
+                    <span class="flag-icon flag-icon-gb flag-icon-squared"></span>
+                </md-button>
+            </md-fab-actions>
+        </md-fab-speed-dial>
+
+        <a ng-if="top.isAuthenticated()" style="position: absolute; padding-right: 50px;">
+            <img ng-src="{{top.getUserImage()}}" style="height: 50px; width: auto;">{{'HI' | translate}}, {{top.getUserName()}}
         </a>
-        <a ng-if="top.isAuthenticated()" href="#/" ng-click="top.logout()">Logout</a>
+        <a ng-if="top.isAuthenticated()" href="#/" ng-click="top.logout()" style="position: absolute; right: 100px;">{{'LOG_OUT' | translate}}</a>
     </div>
 </md-toolbar>
