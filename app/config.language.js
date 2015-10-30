@@ -10,28 +10,47 @@
             $translateProvider.translations('en', {
                 //top_nav.html
                 'LOG_IN': 'Log in',
+                'LOG_OUT': 'Log out',
+                'HI': 'Hi',
+                'FR': 'French',
+                'EN': 'English',
                 //login.html
                 'LOG_IN_HEADER': 'Sign in to continue to Orphee',
                 'USERNAME': 'username',
                 'PASSWORD': 'password',
                 'NEXT': 'Next',
                 'OR': 'Or',
-                'CREATE_ACCOUNT': 'Create account'
+                'CREATE_ACCOUNT': 'Create account',
                 //side_nav_menu.html
-
+                'HOME': 'Home',
+                'CREATIONS': 'Creations',
+                'CHATS': 'Chats',
+                'FRIENDS': 'Friends',
+                'MOMENTS': 'Moments',
+                'PLAYLIST': 'Playlists'
             });
 
             $translateProvider.translations('fr', {
                 //top_nav.html
                 'LOG_IN': 'Connexion',
+                'LOG_OUT': 'Déconnexion',
+                'HI': 'Bonjour',
+                'FR': 'Français',
+                'En': 'Anglais',
                 //login.html
                 'LOG_IN_HEADER': 'Connectez-vous sur Orphee',
                 'USERNAME': 'nom de compte',
                 'PASSWORD': 'mot de passe',
                 'NEXT': 'Continuer',
                 'OR': 'Ou',
-                'CREATE_ACCOUNT': 'Créer un compte'
+                'CREATE_ACCOUNT': 'Créer un compte',
                 //side_nav_menu.html
+                'HOME': 'Accueil',
+                'CREATIONS': 'Creations',
+                'CHATS': 'Chats',
+                'FRIENDS': 'Amis',
+                'MOMENTS': 'News',
+                'PLAYLIST': 'Playlists'
             });
 
             $translateProvider.preferredLanguage('en');

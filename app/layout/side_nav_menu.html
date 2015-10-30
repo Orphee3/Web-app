@@ -4,19 +4,19 @@
             <h1 class="md-toolbar-tools">SideNav left</h1>
         </md-toolbar>
         <md-button aria-label="home" ng-href="#/">
-            <span><i class="material-icons">home</i>home</span>
+            <span><i class="material-icons">home</i>{{'HOME' | translate}}</span>
         </md-button>
         <md-button aria-label="creations">
-            <span><i class="material-icons">music_note</i>creations</span>
+            <span><i class="material-icons">music_note</i>{{'CREATIONS' | translate}}</span>
         </md-button>
         <md-button ng-href="#/chatlist" ng-if="side.isAuthenticated()" aria-label="chat">
-            <span><i class="material-icons">chat</i>chat</span>
+            <span><i class="material-icons">chat</i>{{'CHATS' | translate}}</span>
         </md-button>
         <md-button ng-if="side.isAuthenticated()" ng-click="side.toggleFriendNav()" aria-label="friends">
-            <span><i class="material-icons">people</i>friends</span>
+            <span><i class="material-icons">people</i>{{'FRIENDS' | translate}}</span>
         </md-button>
         <md-button ng-if="side.isAuthenticated()" aria-label="moments">
-            <span><i class="material-icons">public</i>moments</span>
+            <span><i class="material-icons">public</i>{{'MOMENTS' | translate}}</span>
         </md-button>
         <md-button ng-if="!side.isAuthenticated()" aria-label="login" ng-href="#/login">
             Login
@@ -24,7 +24,7 @@
         <md-divider></md-divider>
         <md-button ng-click="side.togglePlaylistNav()" aria-label="playlist">
             <!--<span><i class="material-icons">tune</i>playlist</span>-->
-            Playlist
+            {{'PLAYLIST' | translate}}
         </md-button>
         <div layout="row">
 
