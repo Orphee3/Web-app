@@ -9,7 +9,7 @@
         <md-button aria-label="creations">
             <span><i class="material-icons">music_note</i>{{'CREATIONS' | translate}}</span>
         </md-button>
-        <md-button ng-href="#/chatlist" ng-if="side.isAuthenticated()" aria-label="chat">
+        <md-button ng-href="#/chat" ng-if="side.isAuthenticated()" aria-label="chat">
             <span><i class="material-icons">chat</i>{{'CHATS' | translate}}</span>
         </md-button>
         <md-button ng-if="side.isAuthenticated()" ng-click="side.toggleFriendNav()" aria-label="friends">

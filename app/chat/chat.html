@@ -1,11 +1,54 @@
-<md-content style="height: 87%; overflow-x: hidden">
+<!--<md-content style="height: 87%; overflow-x: hidden">-->
+<md-content>
     <h1>Chat</h1>
-    <div ng-repeat="message in chat.messages">
-        {{message.creator.name}}:{{message.message}}
-    </div>
+    <div layout="row" style="overflow: auto; height: 500px;">
+        <div layout="column">
+            <md-toolbar flex="12" class="md-whiteframe-z3 md-theme-light">
+                <span class="md-toolbar-tools">
+                    Rooms
+                </span>
+                <md-button aria-label="addRooms" class="md-icon-button" style="position: absolute; right:0; top: 0;">
+                    <i class="material-icons">add_circle_outline</i>
+                </md-button>
 
-    <input ng-model="chat.text" type="text" ng-style="chat.inputStyle()" resize>
-    <div ng-click="chat.submit()">click me</div>
+            </md-toolbar>
+            <md-whiteframe class="md-whiteframe-z3" style=" overflow: auto">
+                <md-list flex="20">
+                    <md-list-item ng-click="chat.openRoom(room, $index)"
+                                  ng-repeat="room in chat.rooms"
+                                  ng-class="{'playlist-active': chat.selectedRoom == $index}"
+                                  aria-label="ListRoom">
+                        <div layout="column">
+                            <div layout="row">
+                                <img ng-if="room.private" ng-src="{{room.people[0].picture}}" style="height: 50px; width: 50px;">
+                                <span ng-if="!room.private"><i class="material-icons md-48">person</i></span>
+                                <div translate style="opacity: 0.5; position:absolute; right: 0">{{room.messageDate}}</div>
+                            </div>
+
+                            <div>
+                                <span ng-repeat="people in room.people">{{people.name}}<span ng-if="!$last">,&nbsp;</span></span>
+                                <div style="opacity: 0.5">
+                                    <span ng-if="!room.private && room.lastMessage.message">{{room.lastMessage.creator.name}}: </span>
+                                    {{room.lastMessage.message}}
+                                </div>
+                            </div>
+                        </div>
+                        <md-divider ng-if="!$last"></md-divider>
+                    </md-list-item>
+                </md-list>
+            </md-whiteframe>
+        </div>
+
+        <div class="md-whiteframe-z3" flex="80" id="chatBox" schroll-bottom="chat.messages" style="overflow: auto; margin: 10px;">
+            <div ng-repeat="message in chat.messages">
+                {{message.creator.name}}:{{message.message}}
+            </div>
+        </div>
+    </div>
+    <form ng-submit="chat.submit()">
+        <input ng-model="chat.text" type="text" ng-style="chat.inputStyle()" resize>
+    </form>
 </md-content>
+
 
 

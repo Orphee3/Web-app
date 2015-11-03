@@ -7,9 +7,9 @@
         .module('app.core')
         .factory('chatservice', chatservice);
 
-    chatservice.$inject = ['$http'];
+    chatservice.$inject = ['$http', '$window'];
 
-    function chatservice($http) {
+    function chatservice($http, $window) {
         var vm = this;
 
         vm.privateChat = false;
@@ -28,7 +28,9 @@
             getTarget: getTarget,
             getRooms: getRooms,
             isPrivateChat: isPrivateChat,
-            isGroupChat: isGroupChat
+            isGroupChat: isGroupChat,
+
+            formatRoomsDate: formatRoomsDate
         };
 
         return service;
@@ -80,7 +82,7 @@
                 .catch(console.log);
 
             function getRoomCompleted(data) {
-                return data.data;
+                return sortRooms(formatRoomsDate(managePeoplePrivateRoom(data.data)));
             }
         }
 
@@ -90,6 +92,45 @@
 
         function isGroupChat() {
             return vm.groupChat;
+        }
+
+        //private func
+        function managePeoplePrivateRoom(rooms) {
+            var user;
+            return rooms.map(function (room) {
+                if (room.private) {
+                    user = JSON.parse($window.localStorage.currentUser);
+                    if (JSON.stringify(user._id) === JSON.stringify(room.people[0]._id))
+                        room.people.splice(0, 1);
+                    else room.people.splice(1, 1);
+                }
+                room.people.push.apply(room.people, room.peopleTmp);
+                return room;
+            });
+        }
+
+        //private func
+        function formatRoomsDate(rooms) {
+            var now = moment(new Date());
+            var last;
+            return rooms.map(function (room) {
+                last = moment(room.lastMessageDate);
+                if (now.diff(last, 'days', true) < 2 && now.format('D') === last.format('D'))
+                    room.messageDate = moment(room.lastMessageDate).format('HH:mm');
+                else if (now.diff(last, 'days', true) < 2)
+                    room.messageDate = 'YESTERDAY';
+                else
+                    room.messageDate = moment(room.lastMessageDate).format('D/MM/YYYY');
+                return room;
+            });
+        }
+
+        function sortRooms(rooms) {
+            return rooms.sort(function (a, b) {
+                if (moment(a.lastMessageDate).isBefore(moment(b.lastMessageDate)))
+                    return 1;
+                else return -1;
+            });
         }
     }
 })();
