@@ -27,7 +27,9 @@
                 'CHATS': 'Chats',
                 'FRIENDS': 'Friends',
                 'MOMENTS': 'Moments',
-                'PLAYLIST': 'Playlists'
+                'PLAYLIST': 'Playlists',
+                //chatlist.html
+                'YESTERDAY': 'yesterday'
             });
 
             $translateProvider.translations('fr', {
@@ -50,7 +52,9 @@
                 'CHATS': 'Chats',
                 'FRIENDS': 'Amis',
                 'MOMENTS': 'News',
-                'PLAYLIST': 'Playlists'
+                'PLAYLIST': 'Playlists',
+                //chatlist.html
+                'YESTERDAY': 'hier'
             });
 
             $translateProvider.preferredLanguage('en');
