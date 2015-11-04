@@ -66,7 +66,8 @@
         }
 
         function isCurrentChat(source) {
-            return source._id  === vm.privateTarget._id;
+            if (vm.privateChat) return JSON.stringify(source._id) === JSON.stringify(vm.privateTarget._id);
+            else return JSON.stringify(source) === JSON.stringify(vm.groupTarget);
         }
 
         function getTarget() {

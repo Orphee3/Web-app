@@ -25,13 +25,12 @@
 
         socketservice.getSocket().on('private message', function (data) {
             console.log('private mess', data);
-            //if (chatservice.isCurrentChat(data.source))
-            vm.messages.push(data.message);
+            if (chatservice.isCurrentChat(data.source)) vm.messages.push(data.message);
         });
 
         socketservice.getSocket().on('group message', function (data) {
             console.log('group mess', data);
-            vm.messages.push(data.message);
+            if (chatservice.isCurrentChat(data.target)) vm.messages.push(data.message);
         });
 
         $rootScope.$on('change friend', function (e, data) {
