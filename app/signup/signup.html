@@ -1,0 +1,46 @@
+<div style="margin-top: 50px">
+    <h1 style="text-align: center; color: #2196F3">{{ 'CREATE_YOUR_ORPHEE_ACCOUNT' | translate }}</h1>
+    <div layout="row" style="margin-bottom: 150px; margin-top: 50px;">
+        <div flex="50"
+             hide-sm hide-md
+             layout="column" layout-align="center center"
+             style="margin-right: 50px;">
+            <img src="images/guitare_icon.png" style="width: 150px; height: 150px;"/>
+            <h3>{{'MUSICAL_CREATION' | translate}}</h3>
+            <div>{{'MUSICAL_CREATION_TEXT' | translate}}</div>
+            <img src="images/social_icon.png" style="width: 150px; height: 150px;"/>
+            <h3>{{'TOGETHER' | translate}}</h3>
+            <div>{{'TOGETHER_TEXT' | translate}}</div>
+            <img src="images/repeat_icon.png" style="width: 150px; height: 150px;"/>
+            <h3>{{'SHARE' | translate}}</h3>
+            <div>{{'SHARE_TEXT' |translate}}</div>
+        </div>
+        <md-whiteframe id="form-signup"
+                       class="md-whiteframe-z3"
+                       flex="50" flex-sm="100" flex-md="100"
+                       layout="column" layout-align="center center" >
+            <img src="images/logo.png" style="height: 150px; width: 150px;"/>
+            <form ng-submit="signup.signUpLocal()">
+                <md-content>
+                    <md-input-container>
+                        <label>{{'EMAIL' | translate}}</label>
+                        <input ng-model="signup.user.username" required>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>{{'NAME' | translate}}</label>
+                        <input ng-model="signup.user.name" required>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>{{'PASSWORD' | translate}}</label>
+                        <input type="password" ng-model="signup.user.password" required>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>{{'CONFIRM_PASSWORD' | translate}}</label>
+                        <input type="password" ng-model="signup.user.confirmPassword" required>
+                    </md-input-container>
+                </md-content>
+                <md-button class="md-raised md-primary" style="left: 35px;">{{'NEXT' | translate}}</md-button>
+            </form>
+        </md-whiteframe>
+    </div>
+</div>

@@ -14,6 +14,10 @@
                 templateUrl: 'app/login/login.html',
                 controller: 'LoginCtrl as log'
             })
+            .when('/signUp', {
+                templateUrl: '/app/signup/signup.html',
+                controller: 'SignUpCtrl as signup'
+            })
             .when('/chatlist', {
                 templateUrl: 'app/chat/chatlist.html',
                 controller: 'ChatListCtrl as chatlist'

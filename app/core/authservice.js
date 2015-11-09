@@ -12,7 +12,8 @@
 
     function authservice($http) {
         var service = {
-            loginLocal: loginLocal
+            loginLocal: loginLocal,
+            signUpLocal: signUpLocal
         };
 
         return service;
@@ -30,13 +31,25 @@
             return $http(req)
                 .then(getToken)
                 .catch();
+        }
 
-            function getToken(data, status, headers, config) {
-                return {
-                    token: data.data.token,
-                    user: data.data.user
-                };
-            }
+        function signUpLocal(user) {
+            var req = {
+                method: 'POST',
+                url: 'http://localhost:3000/api/register',
+                data: user
+            };
+
+            return $http(req)
+                .then(getToken)
+                .catch();
+        }
+
+        function getToken(data, status, headers, config) {
+            return {
+                token: data.data.token,
+                user: data.data.user
+            };
         }
 
     }
