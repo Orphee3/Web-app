@@ -7,12 +7,14 @@
         </md-button>
         <img src="images/logo.png" style="width: 50px; height: 50px;">
         <h1><a href="#/">Orphée</a></h1>
-        <div class="col-xs-2">
-            <input type="text" placeholder="search" class="form-control">
-        </div>
-        <md-button class="md-icon-button" aria-label="search">
-            <i class="material-icons">search</i>
-        </md-button>
+        <form class="col-xs-2" ng-submit="top.searchBaby()" layout="row" layout-align="center center" style="margin-top: 15px;">
+            <div >
+                <input type="text" placeholder="search" ng-model="top.searchCreations" class="form-control">
+            </div>
+            <md-button class="md-icon-button" aria-label="search">
+                <i class="material-icons">search</i>
+            </md-button>
+        </form>
 
         <a ng-if="!top.isAuthenticated()" href="#/login">{{'LOG_IN' | translate}}</a>
         <md-fab-speed-dial md-direction="down" ng-class="md-fling" style="position: absolute; right: 0">
@@ -31,8 +33,16 @@
             </md-fab-actions>
         </md-fab-speed-dial>
 
+        <div ng-if="top.isAuthenticated()" layout="row">
+            <md-button ng-href="#/profile" aria-label="avatar">
+                <md-tooltip>
+                    change avatar
+                </md-tooltip>
+                <img ng-src="{{top.getUserImage()}}" style="height: 50px; width: auto;">
+            </md-button>
+            <span>{{'HI' | translate}}, {{top.getUserName()}}</span>
+        </div>
         <a ng-if="top.isAuthenticated()" style="position: absolute; padding-right: 50px;">
-            <img ng-src="{{top.getUserImage()}}" style="height: 50px; width: auto;">{{'HI' | translate}}, {{top.getUserName()}}
         </a>
         <a ng-if="top.isAuthenticated()" href="#/" ng-click="top.logout()" style="position: absolute; right: 100px;">{{'LOG_OUT' | translate}}</a>
     </div>

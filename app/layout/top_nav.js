@@ -6,9 +6,9 @@
         .module('orphee-app')
         .controller('TopNavCtrl', TopNavCtrl);
 
-    TopNavCtrl.$inject = ['$auth', '$window', '$mdSidenav', 'navservice', 'socketservice', '$translate'];
+    TopNavCtrl.$inject = ['$auth', '$window', '$mdSidenav', 'navservice', 'socketservice', '$translate', '$rootScope'];
 
-    function TopNavCtrl($auth, $window, $mdSidenav, navservice, socketservice, $translate) {
+    function TopNavCtrl($auth, $window, $mdSidenav, navservice, socketservice, $translate, $rootScope) {
         var vm = this;
 
         vm.isAuthenticated = isAuthenticated;
@@ -20,6 +20,9 @@
         vm.getUserName = getUserName;
 
         vm.changeLanguage = changeLanguage;
+
+        vm.searchBaby = searchBaby;
+        vm.searchCreations = '';
 
         function isAuthenticated() {
             return $auth.isAuthenticated();
@@ -47,6 +50,10 @@
 
         function changeLanguage(key) {
             $translate.use(key);
+        }
+
+        function searchBaby() {
+            $rootScope.$emit('search creations', vm.searchCreations);
         }
     }
 

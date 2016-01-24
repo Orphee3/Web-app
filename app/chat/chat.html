@@ -1,8 +1,8 @@
 <!--<md-content style="height: 87%; overflow-x: hidden">-->
-<md-content>
-    <h1>Chat</h1>
-    <div layout="row" style="overflow: auto; height: 500px;">
-        <div layout="column">
+<md-content style="background: #f1f1f1">
+
+    <div layout="row" style="overflow: auto; height: 500px; margin-top: 50px;">
+        <div layout="column" flex="15">
             <md-toolbar flex="12" class="md-whiteframe-z3 md-theme-light">
                 <span class="md-toolbar-tools">
                     Rooms
@@ -12,8 +12,8 @@
                 </md-button>
 
             </md-toolbar>
-            <md-whiteframe class="md-whiteframe-z3" style=" overflow: auto">
-                <md-list flex="20">
+            <md-whiteframe flex="85" class="md-whiteframe-z3" style=" overflow: auto">
+                <md-list>
                     <md-list-item ng-click="chat.openRoom(room, $index)"
                                   ng-repeat="room in chat.rooms"
                                   ng-class="{'playlist-active': chat.selectedRoom == $index}"
@@ -39,7 +39,10 @@
             </md-whiteframe>
         </div>
 
-        <div class="md-whiteframe-z3" flex="80" id="chatBox" schroll-bottom="chat.messages" style="overflow: auto; margin: 10px;">
+        <div class="md-whiteframe-z3" flex="82" id="chatBox" schroll-bottom="chat.messages" style="overflow: auto; margin: 10px; background: white">
+            <md-button aria-label="room-params" class="md-icon-button" style="position: absolute; right:0;">
+                <i class="material-icons">settings</i>
+            </md-button>
             <div ng-repeat="message in chat.messages">
                 {{message.creator.name}}:{{message.message}}
             </div>

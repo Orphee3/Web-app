@@ -1,4 +1,4 @@
-<div style="width: 100%">
+<div id="stage" gs-scale>
     <md-grid-list
         id="grid-list-home"
         md-cols-sm="1" md-cols-md="4" md-cols-lg="10" md-cols-gt-lg="12"
@@ -6,14 +6,15 @@
         md-gutter="5px" md-gutter-gt-sm="12px"
         style="height: 1600px; margin-top: 50px;">
         <md-grid-tile
-            ng-repeat="tile in home.creations"
+            ng-repeat="tile in home.creations | filter:home.search"
             md-rowspan="2"
             md-colspan="2"
             md-colspan-lg="3"
             md-colspan-md="4">
             <md-whiteframe class="md-whiteframe-z4" layout="column">
             <div style="padding-top: 10px; text-align: center">{{tile.name}}</div>
-                <img style="cursor: pointer; width: 200px; height: 130px; padding-bottom:15px; margin-left: 5px; margin-right:5px;" ng-src="{{tile.picture}}">
+                <img ng-click="home.showDetails($event, tile);" style="width: 200px; height: 130px; padding-bottom:15px; margin-left: 5px; margin-right:5px;" ng-src="{{tile.picture}}">
+
                 <div style="color: #fff; background: rgba(0, 0, 0, 0.18);">
                     <md-button ng-click="home.playCurrent(tile.url)" class="md-icon-button md-primary" aria-label="play">
                         <i class="material-icons md-18">play_arrow</i>
@@ -24,5 +25,72 @@
                 </div>
             </md-whiteframe>
         </md-grid-tile>
-  </md-grid-list>
+    </md-grid-list>
+
+    <div id="details" class="lol" >
+
+        <!--<div id="artist"></div>-->
+        <div ng-style="home.circleStyle" id="circle"></div>
+        <img ng-src="{{home.currentDetail.picture}}" ng-style="home.circleStyle" id="song">
+        <div id="playlist" style="position: absolute; display: none">
+            <md-whiteframe class="md-whiteframe-z3" layout="column" style="width: 500px; margin-bottom: 100px;">
+
+                <div id="detail-head" layout="row">
+                    <img style="height: 150px; width: 330px" ng-src="{{home.currentDetail.picture}}">
+                    <div layout="column" style="background-color: #2196F3; color: white">
+                        <div flex="65">
+                            <h1 style="color: white">{{home.currentDetail.name}}</h1>
+                            <a ng-href="#/profile/{{home.currentDetail.creator[0]._id}}" style="text-transform: none">by {{home.currentDetail.creator[0].name}}</a>
+                        </div>
+                        <div flex="25">{{home.currentDetail.nbLikes}} Likes</div>
+                    </div>
+                </div>
+                <div ng-click="home.hideDetails()">hide</div>
+                <div id="comments" layout="column">
+                    <form ng-if="home.isAuthenticated()" ng-submit="home.addComment()">
+                        <md-input-container>
+                            <label>type your comment</label>
+                            <input ng-model="home.comment" type="text">
+                        </md-input-container>
+                    </form>
+                    <div ng-repeat="comment in home.comments" style="margin-bottom: 10px;">
+                        <div layout="row">
+                            <img ng-src="{{comment.creator.picture}}" style="width: 50px; height: 50px;">
+                            <div style="color: #2196F3">{{comment.creator.name}}&nbsp;</div>
+                            <div flex="65">{{comment.message}}</div>
+                        </div>
+                        <div style="color: #666;">{{comment.dateCreation}}</div>
+                    </div>
+                </div>
+
+            </md-whiteframe>
+        </div>
+    </div>
+
 </div>
+
+<!--<gs-timeline state="zoom" time-scale="1.0">
+    <gs-step target="#circle" style="scale:1.2;opacity:0"></gs-step>
+
+    <gs-step target="#song" style="left:100; top:100;"></gs-step>
+
+    <gs-step target="#details" style="display:none;"></gs-step>
+    <gs-step target="#song" style="display:none;opacity:1"></gs-step>
+
+    <gs-step target="#song" style="bounds:{{home.from}}"></gs-step>
+
+    <gs-step target="#details" style="display:block;"></gs-step>
+    <gs-step target="#song" style="display:block;"></gs-step>
+    <gs-step mark-position="start"></gs-step>
+    <gs-step target="#grid-list-home" style="display: none" duration="0.05" position="start"></gs-step>
+    <gs-step target="#circle" style="opacity:1;" duration="0.01" position="start"></gs-step>
+    <gs-step target="#circle" style="scale:6;" duration="0.3" position="start+=0.01"></gs-step>
+    <gs-step target="#circle" style="scale:7;opacity:0.85" duration="0.1" position="start+=0.31"></gs-step>
+    <gs-step target="#circle" style="delay:0.2; opacity:0" duration="0.4" position="start+=0.5"></gs-step>
+    <gs-step target="#artist" style="opacity:1" duration="0.8" position="start"></gs-step>
+    <gs-step target="#song" style="bounds:{{ home.switchOver }}" duration="0.33" position="start"></gs-step>
+    <gs-step target="#playlist" style="bounds:{{ home.switchOver}}" position="start+=0.33"></gs-step>
+    <gs-step target="#playlist" style="display:block;className:'';" duration="0.010" position="start+=0.33"></gs-step>
+    <gs-step target="#song" style="opacity:0;display:none" duration="0.010" position="start+=0.33"></gs-step>
+    <gs-step target="#playlist" style="bounds:{{ home.to }}" duration="0.5" position="start+=0.34"></gs-step>
+</gs-timeline>-->

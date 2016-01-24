@@ -136,8 +136,10 @@
                 vm.selectedRoom = 0;
             }
 
-            if (chatservice.isPrivateChat())
+            if (chatservice.isPrivateChat()) {
+                console.log('emit private message', vm.text);
                 socketservice.emit('private message', {to: chatservice.getTarget(), message: vm.text});
+            }
             else {
                 console.log('emit group mess from client');
                 socketservice.emit('group message', {to: chatservice.getTarget(), message: vm.text});

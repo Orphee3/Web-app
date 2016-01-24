@@ -1,54 +1,40 @@
 /**
- * Created by superphung on 8/5/15.
+ * Created by superphung on 1/21/16.
  */
 (function () {
     angular
         .module('orphee-app')
-        .controller('HomeCtrl', HomeCtrl);
+        .controller('ProfileDetailCtrl', ProfileDetailCtrl);
 
-    HomeCtrl.$inject = ['$q', '$auth', '$window', 'audioservice', 'dataservice', 'playlistservice', '$rootScope', 'animation', '$scope'];
+    ProfileDetailCtrl.$inject = ['$rootScope', '$routeParams', '$auth', '$window', 'audioservice', 'playlistservice', 'dataservice', 'animation'];
 
-    function HomeCtrl($q, $auth, $window, audioservice, dataservice, playlistservice, $rootScope, animation, $scope) {
+    function ProfileDetailCtrl($rootScope, $routeParams, $auth, $window, audioservice, playlistservice, dataservice, animation) {
         var vm = this;
 
-        vm.creations = [];
-        vm.comments = [];
-        //vm.search = '';
         vm.isAuthenticated = isAuthenticated;
+
         vm.playCurrent = playCurrent;
-        vm.addToPlaylist= addToPlaylist;
+        vm.addToPlaylist = addToPlayList;
+
+        vm.addComment = addComment;
 
         vm.showDetails = showDetails;
         vm.hideDetails = hideDetails;
 
-        vm.addComment = addComment;
-
-        $rootScope.$on('search creations', function (e, data) {
-            vm.search = data;
-        });
-
         activate();
 
         function activate() {
-            var promises = [getPopularCreation()];
-
-            $q.all(promises)
-                .then(function () {
-                    console.log('activated home page');
-                    console.log(vm.creations);
-                });
-        }
-
-        function getPopularCreation() {
-            return dataservice.getPopularCreation()
-                .then(function (data) {
-                    vm.creations = data;
-                    return vm.creations;
+            return dataservice.getById($routeParams.id)
+                .then(function (user) {
+                    vm.user = user;
+                    return dataservice.getUserCreations($routeParams.id);
+                })
+                .then(function (creations) {
+                    vm.creations = creations;
                 });
         }
 
         function isAuthenticated() {
-            //return $window.sessionStorage.token;
             return $auth.isAuthenticated();
         }
 
@@ -56,8 +42,8 @@
             audioservice.play(url);
         }
 
-        function addToPlaylist(creation) {
-            playlistservice.addToPlaylist(creation);
+        function addToPlayList(creation) {
+            playlistservice.addToPlayList(creation);
             $rootScope.$broadcast('refresh playlist');
         }
 

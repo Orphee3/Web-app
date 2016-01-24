@@ -1,0 +1,32 @@
+#circle {
+    width: 338px;
+    height: 338px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: #2196F3;
+    border: none
+}
+
+#artist {
+    background-image: url(https://s3-eu-west-1.amazonaws.com/orphee/image/14372142497360.5893471539020538);
+    width: 400px;
+    height: 600px;
+    opacity:0;
+    background-repeat: no-repeat;
+    border:none;
+}
+
+.lol {
+    display: none;
+    border: none;
+}
+
+#stage {
+    position: relative;
+    border: 1px solid transparent;
+    height: 100%;
+    width: 1500px;
+    overflow: inherit;
+}
+

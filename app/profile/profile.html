@@ -1,0 +1,75 @@
+<md-content id="stage" gs-scale style="margin-top: 50px">
+    <md-toolbar class="md-primary md-hue-1" layout="row" layout-align="center center">
+        <span>
+            <img ng-click="profile.showDialog()" ng-src="{{profile.user.picture}}"
+                 style="height: 50px; width: 50px; text-transform: none">
+            <md-tooltip>{{'UPLOAD_NEW' | translate}}</md-tooltip>
+        </span>
+        <h2 style="color: white">{{profile.user.name}}</h2>
+    </md-toolbar>
+    <!--<div>{{'PROFILE_PICTURE' | translate}}</div>-->
+    <div layout="row">
+
+
+
+    </div>
+
+    <!--<md-button ng-click="profile.showDialog()" class="md-raised md-primary" style="text-transform: none">
+        {{'UPLOAD_NEW' | translate}}
+    </md-button>-->
+    <div>
+        <h1 style="color: #2196F3">{{'CREATIONS' | translate}}</h1>
+        <md-divider></md-divider>
+    </div>
+
+    <md-grid-list
+            id="grid-list-home"
+            md-cols-sm="1" md-cols-md="4" md-cols-lg="10" md-cols-gt-lg="12"
+            md-row-height-gt-md="1:1" md-row-height="4:3"
+            md-gutter="5px" md-gutter-gt-sm="12px"
+            style="height: 1600px; margin-top: 50px;">
+        <md-grid-tile
+                ng-repeat="tile in profile.creations"
+                md-rowspan="2"
+                md-colspan="2"
+                md-colspan-lg="3"
+                md-colspan-md="4">
+            <md-whiteframe class="md-whiteframe-z4" layout="column">
+                <div style="padding-top: 10px; text-align: center">{{tile.name}}</div>
+                <img ng-click="home.showDetails($event, tile);"
+                     style="width: 200px; height: 130px; padding-bottom:15px; margin-left: 5px; margin-right:5px;"
+                     ng-src="{{tile.picture}}">
+
+                <div style="color: #fff; background: rgba(0, 0, 0, 0.18);">
+                    <md-button ng-click="profile.playCurrent(tile.url)" class="md-icon-button md-primary"
+                               aria-label="play">
+                        <i class="material-icons md-18">play_arrow</i>
+                    </md-button>
+                    <md-button ng-click="profile.addToPlaylist(tile)" class="md-icon-button md-primary"
+                               aria-label="add to playlist">
+                        <i class="material-icons md-18">queue_music</i>
+                    </md-button>
+                </div>
+            </md-whiteframe>
+        </md-grid-tile>
+    </md-grid-list>
+</md-content>
+
+<script id="dialog.tmpl.html" type="text/ng-template">
+
+    <md-dialog aria-label="avatar-dialog" style="width: 400px; height: 400px;">
+
+        <md-button class="md-raised md-primary">
+            <label for="fileInput">{{'SELECT_FILE' | translate}}</label>
+        </md-button>
+        <input type="file" id="fileInput" aria-label="picture" style="display: none">
+
+        <img-crop image="myImage" result-image="myCroppedImage" area-type="square"></img-crop>
+        <md-button ng-click="setAvatar()" ng-if="myImage" class="md-raised md-primary md-hue-1"
+                   style="color: white; text-transform: none">
+            {{'SET_NEW' | translate}}
+        </md-button>
+
+    </md-dialog>
+
+</script>

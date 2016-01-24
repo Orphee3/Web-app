@@ -1,0 +1,84 @@
+<md-content id="stage" gs-scale style="margin-top: 50px">
+    <md-toolbar class="md-primary md-hue-1" layout="row" layout-align="center center">
+            <img ng-src="{{profileDetail.user.picture}}"
+                 style="height: 50px; width: 50px; text-transform: none">
+        <h2 style="color: white">{{profileDetail.user.name}}</h2>
+    </md-toolbar>
+
+    <div>
+        <h1 style="color: #2196F3">{{'CREATIONS' | translate}}</h1>
+        <md-divider></md-divider>
+    </div>
+
+    <md-grid-list
+            id="grid-list-home"
+            md-cols-sm="1" md-cols-md="4" md-cols-lg="10" md-cols-gt-lg="12"
+            md-row-height-gt-md="1:1" md-row-height="4:3"
+            md-gutter="5px" md-gutter-gt-sm="12px"
+            style="height: 1600px; margin-top: 50px;">
+        <md-grid-tile
+                ng-repeat="tile in profileDetail.creations"
+                md-rowspan="2"
+                md-colspan="2"
+                md-colspan-lg="3"
+                md-colspan-md="4">
+            <md-whiteframe class="md-whiteframe-z4" layout="column">
+                <div style="padding-top: 10px; text-align: center">{{tile.name}}</div>
+                <img ng-click="profileDetail.showDetails($event, tile);"
+                     style="width: 200px; height: 130px; padding-bottom:15px; margin-left: 5px; margin-right:5px;"
+                     ng-src="{{tile.picture}}">
+
+                <div style="color: #fff; background: rgba(0, 0, 0, 0.18);">
+                    <md-button ng-click="profileDetail.playCurrent(tile.url)" class="md-icon-button md-primary"
+                               aria-label="play">
+                        <i class="material-icons md-18">play_arrow</i>
+                    </md-button>
+                    <md-button ng-click="profileDetail.addToPlaylist(tile)" class="md-icon-button md-primary"
+                               aria-label="add to playlist">
+                        <i class="material-icons md-18">queue_music</i>
+                    </md-button>
+                </div>
+            </md-whiteframe>
+        </md-grid-tile>
+    </md-grid-list>
+
+    <div id="details" class="lol" >
+
+        <!--<div id="artist"></div>-->
+        <div ng-style="profileDetail.circleStyle" id="circle"></div>
+        <img ng-src="{{profileDetail.currentDetail.picture}}" ng-style="profileDetail.circleStyle" id="song">
+        <div id="playlist" style="position: absolute; display: none">
+            <md-whiteframe class="md-whiteframe-z3" layout="column" style="width: 500px; margin-bottom: 100px;">
+
+                <div id="detail-head" layout="row">
+                    <img ng-src="{{profileDetail.currentDetail.picture}}">
+                    <div layout="column" style="background-color: #2196F3; color: white">
+                        <div flex="65">
+                            <h1 style="color: white">{{profileDetail.currentDetail.name}}</h1>
+                            <a ng-href="#/profile/{{profileDetail.currentDetail.creator[0]._id}}" style="text-transform: none">by {{profileDetail.currentDetail.creator[0].name}}</a>
+                        </div>
+                        <div flex="25">{{profileDetail.currentDetail.nbLikes}} Likes</div>
+                    </div>
+                </div>
+                <div ng-click="profileDetail.hideDetails()">hide</div>
+                <div id="comments" layout="column">
+                    <form ng-if="profileDetail.isAuthenticated()" ng-submit="profileDetail.addComment()">
+                        <md-input-container>
+                            <label>type your comment</label>
+                            <input ng-model="profileDetail.comment" type="text">
+                        </md-input-container>
+                    </form>
+                    <div ng-repeat="comment in profileDetail.comments" style="margin-bottom: 10px;">
+                        <div layout="row">
+                            <img ng-src="{{comment.creator.picture}}" style="width: 50px; height: 50px;">
+                            <div style="color: #2196F3">{{comment.creator.name}}&nbsp;</div>
+                            <div flex="65">{{comment.message}}</div>
+                        </div>
+                        <div style="color: #666;">{{comment.dateCreation}}</div>
+                    </div>
+                </div>
+
+            </md-whiteframe>
+        </div>
+    </div>
+</md-content>

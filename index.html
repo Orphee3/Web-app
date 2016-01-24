@@ -8,17 +8,21 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/zocial/0/zocial.min.css" rel="stylesheet">
         <link rel="stylesheet" href="app/vendors/dragula/dragula.min.css">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css" rel="stylesheet">
+        <link href="app/vendors/ngImgCrop/ng-img-crop.css" rel="stylesheet">
         <link href="stylesheets/style.css" rel="stylesheet">
+        <link href="app/layout/side_nav_menu.css" rel="stylesheet">
         <link href="app/signup/signup.css" rel="stylesheet">
+        <link href="app/home/home.css" rel="stylesheet">
+        <link href="app/profile/profile.css" rel="stylesheet">
         <base href="/">
     </head>
-    <body>
+    <body style="background: #f1f1f1; overflow-x: hidden; overflow-y: auto">
 
 
         <div ng-include="'app/layout/top_nav.html'"></div>
         <section layout="row">
             <div style="z-index: 1" ng-include="'app/layout/side_nav_menu.html'"></div>
-            <div ng-view style="margin-left: auto; margin-right: auto"></div>
+            <div class="full" ng-view style="margin-left: auto; margin-right: auto;"></div>
             <div style="z-index: 1"ng-include="'app/layout/side_nav_friends.html'"></div>
             <div style="z-index: 1"ng-include="'app/layout/playlist_nav.html'"></div>
         </section>
@@ -43,6 +47,10 @@
         <!--moment -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <!--animation -->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+        <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181892/gsTimelines_v2.js"></script>
+        <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181892/supplant.js"></script>
         <!--midi-->
         <script src="app/vendors/shim/Base64.js"></script>
         <script src="app/vendors/shim/Base64binary.js"></script>
@@ -69,6 +77,8 @@
 
         <script src="app/vendors/dragula/angular-dragula.min.js"></script>
 
+        <script src="app/vendors/ngImgCrop/ng-img-crop.js"></script>
+
         <script src="app/app.js"></script>
         <script src="app/config.route.js"></script>
         <script src="app/config.language.js"></script>
@@ -83,6 +93,7 @@
         <script src="app/core/socketservice.js"></script>
         <script src="app/core/audioservice.js"></script>
         <script src="app/core/playlistservice.js"></script>
+        <script src="app/animation/animation.js"></script>
 
         <!-- controller -->
         <script src="app/home/home.js"></script>
@@ -93,6 +104,9 @@
         <script src="app/layout/audio_player.js"></script>
         <script src="app/login/login.js"></script>
         <script src="app/signup/signup.js"></script>
+        <script src="app/profile/profile.js"></script>
+        <script src="app/profile/profileDetail.js"></script>
+        <script src="app/moments/moments.js"></script>
         <script src="app/chat/chatlist.js"></script>
         <script src="app/chat/createroom.js"></script>
         <script src="app/chat/chat.js"></script>

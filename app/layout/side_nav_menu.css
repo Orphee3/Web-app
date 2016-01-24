@@ -1,0 +1,15 @@
+.side-nav-button {
+    color: #666;
+    text-transform: none;
+    width: 94%;
+}
+
+.side-nav-button:hover {
+    color: #2196F3;
+}
+
+.side-nav-btn-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+}

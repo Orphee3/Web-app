@@ -6,9 +6,9 @@
         .module('orphee-app')
         .controller('SideNavMenuCtrl', SideNavMenuCtrl);
 
-    SideNavMenuCtrl.$inject = ['$q', '$auth', 'navservice', '$rootScope', 'playlistservice'];
+    SideNavMenuCtrl.$inject = ['$q', '$auth', 'navservice', '$rootScope', 'playlistservice', '$location'];
 
-    function SideNavMenuCtrl($q, $auth, navservice, $rootScope, playlistservice) {
+    function SideNavMenuCtrl($q, $auth, navservice, $rootScope, playlistservice, $location) {
         var vm = this;
 
         vm.playlist = [];
@@ -20,6 +20,10 @@
 
         vm.selectPlaylist = selectPlaylist;
         vm.addPlaylist = addPlaylist;
+
+        vm.lol = function () {
+            $location.url('/');
+        };
 
         function isOpen() {
             return navservice.getSideNavState('menu');

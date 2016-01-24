@@ -9,7 +9,7 @@
         .config(function ($translateProvider) {
             $translateProvider.translations('en', {
                 //top_nav.html
-                'LOG_IN': 'Log in',
+                'LOG_IN': 'Sign in',
                 'LOG_OUT': 'Log out',
                 'HI': 'Hi',
                 'FR': 'French',
@@ -34,13 +34,19 @@
                 'SHARE_TEXT': 'Sharing is important! That\'s why we give you the possibility to let your friends help you in creating music.',
                 //side_nav_menu.html
                 'HOME': 'Home',
+                'PROFILE': 'My account',
                 'CREATIONS': 'Creations',
                 'CHATS': 'Chats',
                 'FRIENDS': 'Friends',
                 'MOMENTS': 'Moments',
                 'PLAYLIST': 'Playlists',
                 //chatlist.html
-                'YESTERDAY': 'yesterday'
+                'YESTERDAY': 'yesterday',
+                //profile.html
+                'PROFILE_PICTURE': 'Profile picture',
+                'UPLOAD_NEW': 'Upload new avatar',
+                'SELECT_FILE': 'Select file',
+                'SET_NEW': 'Set new profile picture'
             });
 
             $translateProvider.translations('fr', {
@@ -70,13 +76,19 @@
                 'SHARE_TEXT': 'Le partage est très important, c\'est pourquoi vous pouvez laisser la liberté à bos amis de vous aidez à composer votre musique. Profitez-en',
                 //side_nav_menu.html
                 'HOME': 'Accueil',
+                'PROFILE': 'Mon compte',
                 'CREATIONS': 'Creations',
                 'CHATS': 'Chats',
                 'FRIENDS': 'Amis',
                 'MOMENTS': 'News',
                 'PLAYLIST': 'Playlists',
                 //chatlist.html
-                'YESTERDAY': 'hier'
+                'YESTERDAY': 'hier',
+                //profile.html
+                'PROFILE_PICTURE': 'Mon avatar',
+                'UPLOAD_NEW': 'Changer mon avatar',
+                'SELECT_FILE': 'Choisissez un fichier',
+                'SET_NEW': 'Valider mon avatar'
             });
 
             $translateProvider.preferredLanguage('en');
